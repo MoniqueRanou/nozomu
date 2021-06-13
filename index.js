@@ -55,12 +55,6 @@ client.on('guildMemberAdd', member => {
     member.roles.add(config.greeting.role)
 })
  
-client.on('guildMemberRemove', member => {
-    member.guild.channels.cache.get(config.greeting.channel).send(new Discord.MessageEmbed()
-        .setDescription(`${member.user.tag} viens de quitté le serveur 😭`)
-        .setColor('#6C00FF'))
-})
- 
 client.on('messageReactionAdd', (reaction, user) => {
     if (!reaction.message.guild || user.bot) return
     const reactionRoleElem = config.reactionRole[reaction.message.id]
