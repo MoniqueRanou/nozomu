@@ -81,7 +81,7 @@ client.on('ready', () => {
     ]
     let i = 0
     setInterval(() => {
-        client.user.setActivity(statuses[i](), {type: 'PLAYING'})
+        client.user.setActivity(statuses[i](), {type: 'STREAMING', url: 'https://twitch.tv/nozomu'})
         i = ++i % statuses.length
     }, 1e4)
     setInterval(() => {
