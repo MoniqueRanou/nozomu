@@ -54,25 +54,6 @@ client.on('guildMemberAdd', member => {
         .setColor('#6C00FF'))
     member.roles.add(config.greeting.role)
 })
- 
-client.on('messageReactionAdd', (reaction, user) => {
-    if (!reaction.message.guild || user.bot) return
-    const reactionRoleElem = config.reactionRole[reaction.message.id]
-    if (!reactionRoleElem) return
-    const prop = reaction.emoji.id ? 'id' : 'name'
-    const emoji = reactionRoleElem.emojis.find(emoji => emoji[prop] === reaction.emoji[prop])
-    if (emoji) reaction.message.guild.member(user).roles.add(emoji.roles)
-    else reaction.users.remove(user)
-})
- 
-client.on('messageReactionRemove', (reaction, user) => {
-    if (!reaction.message.guild || user.bot) return
-    const reactionRoleElem = config.reactionRole[reaction.message.id]
-    if (!reactionRoleElem || !reactionRoleElem.removable) return
-    const prop = reaction.emoji.id ? 'id' : 'name'
-    const emoji = reactionRoleElem.emojis.find(emoji => emoji[prop] === reaction.emoji[prop])
-    if (emoji) reaction.message.guild.member(user).roles.remove(emoji.roles)
-})
 
 client.on('ready', () => {
     const statuses = [
@@ -84,12 +65,6 @@ client.on('ready', () => {
         client.user.setActivity(statuses[i](), {type: 'STREAMING', url: 'https://twitch.tv/nozomu'})
         i = ++i % statuses.length
     }, 1e4)
-    setInterval(() => {
-        const [bots, humans] = client.guilds.cache.first().members.cache.partition(member => member.user.bot)
-        client.channels.cache.get(config.serverStats.humans).setName(`𝐦𝐞𝐦𝐛𝐫𝐞 : ${humans.size}`)
-        client.channels.cache.get(config.serverStats.bots).setName(`𝐛𝐨𝐭 : ${bots.size}`)
-        client.channels.cache.get(config.serverStats.total).setName(`Total : ${client.guilds.cache.first().memberCount}`)
-    }, 3e4)
 })
 
 client.on('channelCreate', channel => {
