@@ -62,7 +62,7 @@ client.on('ready', () => {
     ]
     let i = 0
     setInterval(() => {
-        client.user.setActivity(statuses[i](), {type: 'STREAMING', url: 'https://twitch.tv/nozomu'})
+        client.user.setActivity(statuses[i](), {type: 'STREAMING', url: 'https://twitch.tv/SKR3NYX'})
         i = ++i % statuses.length
     }, 1e4)
 })
