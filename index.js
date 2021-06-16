@@ -49,8 +49,8 @@ client.on('message', message => {
 })
  
 client.on('guildMemberAdd', member => {
-    member.guild.channels.cache.get(config.greeting.channel).send(`${member}`, new Discord.MessageEmbed()
-        .setDescription(`🎉 **__Bienvenue ${member} a rejoint le serveur pense à prendre t'es rôles #🎭・rôles. Nous sommes ${member.guild.memberCount} !__** 🎉`)
+    member.guild.channels.cache.get(config.greeting.channel)( new Discord.MessageEmbed()
+        .setDescription(`🎉 **${member} a rejoint le serveur !** **Pense à prendre t'es rôles** #🎭・rôles `Nous sommes ${member.guild.memberCount} ! 🎉` `)
         .setColor('#6C00FF'))
     member.roles.add(config.greeting.role)
 })
