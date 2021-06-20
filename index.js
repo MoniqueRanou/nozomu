@@ -50,7 +50,7 @@ client.on('message', message => {
  
 client.on('guildMemberAdd', member => {
     member.guild.channels.cache.get(config.greeting.channel).send(`${member}`, new Discord.MessageEmbed()
-        .setDescription(`🎉 **Bienvenue sur le serveur ! Pense à prendre t'es rôles** #rôles et #rôlesnotifs ! **Nous sommes ${member.guild.memberCount} !** 🎉 `)
+        .setDescription(`🎉 **Bienvenue sur le serveur ! Pense à prendre t'es rôles** <#854050678372171816> et <#854050804332101632> ! **Tu es le ${member.guild.memberCount} membres!** 🎉 `)
         .setColor('#6C00FF'))
     member.roles.add(config.greeting.role)
 })
